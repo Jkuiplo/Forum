@@ -2,8 +2,15 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 
+const session = require("express-session");
+const passport = require("passport");
+
 app.use(cookieParser());
 app.use(express.json());
+
+app.use(session({secret: "секрет", resave: false, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
