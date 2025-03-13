@@ -18,3 +18,21 @@ document.querySelectorAll(".menu-btn").forEach(button => {
         }
     });
 });
+
+
+fetch("/api/threads")
+    .then(res => res.json())
+    .then(data => {
+        console.log("Треды:", data);
+    })
+    .catch(err => console.error("Ошибка:", err));
+
+    
+    fetch("/api/auth/me")
+    .then(res => res.json())
+    .then(user => {
+        if (user.username) {
+            document.getElementById("names").innerText = user.username;
+        }
+    })
+    .catch(() => console.log("Не авторизован"));
