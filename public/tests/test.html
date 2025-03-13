@@ -1,0 +1,88 @@
+<ul class="menu">
+    <li>
+        <button class="menu-btn">#popular <span class="arrow">▼</span></button>
+        <ul class="submenu">
+            <li>programs</li>
+            <li>teachers</li>
+            <li>computers</li>
+            <li>math</li>
+        </ul>
+    </li>
+    <li>
+        <button class="menu-btn">#conspects <span class="arrow">▼</span></button>
+        <ul class="submenu">
+            <li>notes</li>
+            <li>lectures</li>
+        </ul>
+    </li>
+</ul>
+
+<style>
+    /* Общие стили */
+    .menu {
+        list-style: none;
+        padding: 0;
+        width: 200px;
+    }
+    .menu-btn {
+        background: none;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        color: purple;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+    }
+    .submenu {
+        list-style: none;
+        padding-left: 20px;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        opacity: 0;
+    }
+    .submenu li {
+        padding: 5px 0;
+    }
+
+    /* Активный класс */
+    .submenu.active {
+        max-height: 200px; /* Регулируй по количеству пунктов */
+        opacity: 1;
+    }
+
+    /* Анимация стрелки */
+    .menu-btn .arrow {
+        transition: transform 0.3s ease;
+    }
+    .menu-btn.active .arrow {
+        transform: rotate(180deg);
+    }
+</style>
+
+<script>
+    document.querySelectorAll(".menu-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            let submenu = button.nextElementSibling;
+            let      isActive = submenu.classList.contains("active");
+
+            // Закрываем все открытые меню
+            document.querySelectorAll(".submenu").forEach(el => {
+                el.classList.remove("active");
+            });
+            document.querySelectorAll(".menu-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            // Если меню не было открыто, открываем его
+            if (!isActive) {
+                submenu.classList.add("active");
+                button.classList.add("active");
+            }
+        });
+    });
+</script>
