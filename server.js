@@ -18,4 +18,6 @@ app.use("/auth", authRoutes);
 const userRoutes = require("./routes/user");
 app.use("/user", userRoutes);
 
+app.use("/uploads", express.static("uploads"));
+
 app.listen(5000, () => console.log("Сервер запущен на порту 5000"));

@@ -10,9 +10,12 @@ const SECRET_KEY = "Qwe123456Asd";
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
+const upload = require("../middleware/multer");
+
 router.post (
 	"/register",
 	//Проверка на непустость, на есть ли этот емэйл и длину пароля
+	upload.single("avatar"), // Обработчик загрузки аватара 
 	[
 		body("username").notEmpty(),
 		body("email").isEmail(),
@@ -25,7 +28,8 @@ router.post (
 		}
 
 		const {username, email, password} = req.body;
-		
+		const avatarPath = req.file ? '/uploads/avatars/${req.file.filename}' : null; //Проверяем есть ли файл		
+
 		//Проверка на существующего пользователя
 		const existingUser = db.prepare("SELECT * FROM users WHERE email = ?").get(email);
 		if(existingUser){
@@ -36,11 +40,13 @@ router.post (
 		const hashedPassword = await bcrypt.hash(password, 10);
 		
 		//Запихиваем в БД данные
-		const stmt = db.prepare("INSERT INTO users(username, email, password) VALUES(?, ?, ?)");
-		const result = stmt.run(username, email, hashedPassword);
+		const stmt = db.prepare("INSERT INTO users(username, email, password, avatar) VALUES(?, ?, ?, ?)");
+		const result = stmt.run(username, email, hashedPassword, avatarPath);
 		
 		//Забираем из sql id последнего созданного, может наверное вызвать ошибки если несколько одновременно зайдет, но пока пофиг
 		const userId = result.lastInsertRowid;
+
+		res.json({message: "Пользователь зарегистрирован!", avatar: avatarPath});
 	}
 );
 
