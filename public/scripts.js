@@ -1,20 +1,14 @@
-document.querySelectorAll(".menu-btn").forEach(button => {
-    button.addEventListener("click", () => {
-        let submenu = button.nextElementSibling;
-        let      isActive = submenu.classList.contains("active");
+const http = require('http');
 
-        // Закрываем все открытые меню
-        document.querySelectorAll(".submenu").forEach(el => {
-            el.classList.remove("active");
-        });
-        document.querySelectorAll(".menu-btn").forEach(btn => {
-            btn.classList.remove("active");
-        });
+const hostname = '127.0.0.1';
+const port = 3000;
 
-        // Если меню не было открыто, открываем его
-        if (!isActive) {
-            submenu.classList.add("active");
-            button.classList.add("active");
-        }
-    });
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Привет, локальная сеть!\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Сервер запущен на http://${hostname}:${port}/`);
 });

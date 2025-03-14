@@ -23,11 +23,7 @@ header {
     padding-left: 0;
 }
 
-@media (max-width: 768px) {
-    .logo {
-        display: none;
-    }
-}
+
 
 .logo {
     margin-left: 2rem;
@@ -107,12 +103,11 @@ h2{
     height: 3rem;
     border-radius: 50%;
 }
-
-.content {
-}
-
 @media (max-width: 768px) {
     .leftbar {
+        display: none;
+    }
+    .logo {
         display: none;
     }
 }
@@ -188,4 +183,9 @@ h2{
 }
 .arrow{
     position: relative;
+}
+.post{
+    width: 800px;
+    height: 700px;
+    border:black solid 2px;
 }
