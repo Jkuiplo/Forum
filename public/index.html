@@ -41,10 +41,39 @@
             </div>
 
         </header>
-        <div class="leftbar">
-            <div class="">
-                <span>
-                      <button class="menu-btn"> <span> <img src="img/hashtag.svg"> </span> popular <span class="arrow"><img src="img/Line_noneact.svg"> </span></button>
+        <button id="toggleSidebar" class="toggle-btn"><img src="img/hidden_left.svg"></button>
+        <div class="main-container">
+            <div class="leftbar">
+                <div class="hashtagss">
+                    <span>
+                        <button class="menu-btn"> <span> <img src="img/hashtag.svg"> </span> popular <span class="arrow"><img src="img/Line_noneact.svg"> </span></button>
+                            <ul class="submenu">
+                                <li>programs</li>
+                                <li>teachers</li>
+                                <li>computers</li>
+                                <li>math</li>
+                            </ul>
+                    </span>
+                    <span>
+                        <button class="menu-btn"> <span> <img src="img/hashtag.svg"> </span> conspect <span class="arrow"><img src="img/Line_noneact.svg"> </span></button>
+                        <ul class="submenu">
+                            <li>programs</li>
+                            <li>teachers</li>
+                            <li>computers</li>
+                            <li>math</li>
+                        </ul>
+                    </span>
+                    <span>
+                        <button class="menu-btn"> <span> <img src="img/hashtag.svg"> </span> meme <span class="arrow"><img src="img/Line_noneact.svg"> </span></button>
+                            <ul class="submenu">
+                                <li>programs</li>
+                                <li>teachers</li>
+                                <li>computers</li>
+                                <li>math</li>
+                            </ul>
+                    </span>
+                    <span>
+                        <button class="menu-btn"> <span> <img src="img/hashtag.svg"> </span> others <span class="arrow"><img src="img/Line_noneact.svg"> </span></button>
                         <ul class="submenu">
                             <li>programs</li>
                             <li>teachers</li>
@@ -52,46 +81,31 @@
                             <li>math</li>
                         </ul>
                 </span>
-                <span>
-                    <button class="menu-btn"> <span> <img src="img/hashtag.svg"> </span> conspect <span class="arrow"><img src="img/Line_noneact.svg"> </span></button>
-                      <ul class="submenu">
-                          <li>programs</li>
-                          <li>teachers</li>
-                          <li>computers</li>
-                          <li>math</li>
-                      </ul>
-                </span>
-                <span>
-                      <button class="menu-btn"> <span> <img src="img/hashtag.svg"> </span> meme <span class="arrow"><img src="img/Line_noneact.svg"> </span></button>
-                        <ul class="submenu">
-                            <li>programs</li>
-                            <li>teachers</li>
-                            <li>computers</li>
-                            <li>math</li>
-                        </ul>
-                </span>
-                <span>
-                    <button class="menu-btn"> <span> <img src="img/hashtag.svg"> </span> others <span class="arrow"><img src="img/Line_noneact.svg"> </span></button>
-                      <ul class="submenu">
-                          <li>programs</li>
-                          <li>teachers</li>
-                          <li>computers</li>
-                          <li>math</li>
-                      </ul>
-              </span>
+                </div>
             </div>
+                <div class="post">
+                    <div class="toppost">
+
+                    </div>
+                    <div class="middlepost">
+
+                    </div>
+                    <div class="bottompost">
+
+                    </div>
+                </div>
         </div>
-            <div class="post">
-                jej
-                
-            </div>
         <script>
+            document.getElementById("toggleSidebar").addEventListener("click", function () {
+                document.querySelector(".leftbar").classList.toggle("hidden");
+            });
+
+
             document.querySelectorAll(".menu-btn").forEach(button => {
                 button.addEventListener("click", () => {
                     let submenu = button.nextElementSibling;
                     let      isActive = submenu.classList.contains("active");
         
-                    // Закрываем все открытые меню
                     document.querySelectorAll(".submenu").forEach(el => {
                         el.classList.remove("active");
                     });
@@ -99,7 +113,6 @@
                         btn.classList.remove("active");
                     });
         
-                    // Если меню не было открыто, открываем его
                     if (!isActive) {
                         submenu.classList.add("active");
                         button.classList.add("active");
