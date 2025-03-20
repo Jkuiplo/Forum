@@ -19,6 +19,7 @@ document.querySelectorAll(".menu-btn").forEach(button => {
     });
 });
 
+console.log("dsfasdfasdf");
 
 fetch("/api/threads")
     .then(res => res.json())
@@ -36,3 +37,25 @@ fetch("/api/threads")
         }
     })
     .catch(() => console.log("Не авторизован"));
+
+    async function loadThreads() {
+        const response = await fetch("/api/threads"); // Запрос на API
+        const threads = await response.json(); // Получаем JSON
+    
+        const container = document.getElementById("posts");
+        container.innerHTML = "";
+    
+        threads.forEach(thread => {
+            const postDiv = document.createElement("div");
+            postDiv.classList.add("post");
+            postDiv.innerHTML = `
+                <h2>${thread.title}</h2>
+                <p>${thread.content}</p>
+                <small>Дата: ${new Date(thread.created_at).toLocaleString()} </small>
+            `;
+            container.appendChild(postDiv);
+        });
+    }
+    
+    document.addEventListener("DOMContentLoaded", loadThreads);
+    
