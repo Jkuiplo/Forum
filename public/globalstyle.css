@@ -1,9 +1,4 @@
-html{
-overflow: hidden;
-}
-::-webkit-scrollbar {
-    display: none;
-}
+
 body {
     top: 0;
     left: 0;
@@ -21,13 +16,10 @@ header {
     padding: 0.5%;
     padding-right: 0;
     padding-left: 0;
+    z-index: 5;
 }
 
-@media (max-width: 768px) {
-    .logo {
-        display: none;
-    }
-}
+
 
 .logo {
     margin-left: 2rem;
@@ -108,20 +100,47 @@ h2{
     border-radius: 50%;
 }
 
-.content {
-}
-
-@media (max-width: 768px) {
-    .leftbar {
-        display: none;
-    }
+.main-container {
+    display: flex;
+    height: 100vh; /* Полная высота экрана */
 }
 
 .leftbar {
-    border: 0.1rem solid black;
-    border-top: none;
-    width: 18rem;
-    height: 100%;
+    position: fixed; /* Теперь фиксированное положение */
+    left: 0; /* Учитываем высоту header */
+    width: 250px;
+    height: calc(100vh - 5rem); /* Высота экрана без учета header */
+    background: white;
+    color: white;
+    padding-top: 20px;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;
+    border-right: 1px black solid;
+}
+.leftbar.hidden {
+    transform: translateX(-100%);
+}
+.hashtagss{
+    margin-top: 5rem;
+}
+.toggle-btn {
+    margin-top: 2rem;
+    position: fixed;
+    padding: 1vw;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.toggle-btn img{
+    height: 2rem;
+    width: 2rem;
+
+}
+.content {
+    flex-grow: 1; /* Контент займет оставшееся пространство */
+    padding: 20px;
 }
 .mainTAGS {
     display: flex;
@@ -145,16 +164,16 @@ h2{
     color: purple;
     cursor: pointer;
     width: 100%;
+    font-size: 1rem;
     border: none;
     background: none;
-    font-size: 2rem;
     padding: 10px;
     gap: 10%; /* Отступ между иконкой и текстом */
 }
 
 .menu-btn img {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 .submenu {
     list-style: none;
@@ -167,7 +186,6 @@ h2{
 }
 .submenu li {
     font-family: glegoo;
-    font-size: 1rem;
     margin-left: 1vw;
     padding: 5px 0;
     color: 7700FF;

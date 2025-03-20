@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+    .leftbar {
+        transform: translateX(-100%);
+        position: fixed;
+        width: 220px;
+        z-index: 999;
+    }
+    .leftbar.show {
+        transform: translateX(0);
+    }
+}
+.post {
+    margin-left: 20%;
+    margin-top: 20%;
+    height: 40%;
+    width: 70%; /* Пусть пост растягивается по ширине */
+    max-width: auto; /* Ограничение по ширине, если нужно */
+    border: 0.1rem solid black;
+}
